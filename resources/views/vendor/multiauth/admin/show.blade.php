@@ -1,12 +1,12 @@
-@extends('multiauth::layouts.master') 
+@extends('multiauth::layouts.master')
 @section('main-content')
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Admin Roles</h2>
+            <h2>Admin Roles {{ ucfirst(config('multiauth.prefix')) }} List </h2>
         </div>
-
-        <div class="col-xs-12 col-sm-3">
+        <div class="col-xs-12 col-sm-4">
+                @include('multiauth::message')
             <div class="card profile-card">
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
@@ -36,7 +36,7 @@
                     </ul>
                     <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
                 </div>
-            </div>  
+            </div>
         </div>
 
         <div class="container">

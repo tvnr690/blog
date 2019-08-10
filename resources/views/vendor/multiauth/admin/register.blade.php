@@ -1,6 +1,68 @@
-@extends('multiauth::layouts.app') 
-@section('content')
-<div class="container">
+@extends('multiauth::layouts.master')
+@section('main-content')
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>Register New Admin </h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Register New {{ ucfirst(config('multiauth.prefix')) }}</h2>
+                        </div>
+                        <div class="body">
+                            @include('multiauth::message')
+                            <form id="form_validation" method="POST" action="{{ route('admin.register') }}" novalidate="novalidate">
+                                @csrf
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                        <label class="form-label">Name</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float {{ $errors->has('email') ? ' has-error' : '' }} ">
+                                    <div class="form-line">
+                                        <input type="email"class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                        <label class="form-label">Email</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Assign Role</label>
+                                    <select multiple name="role_id[]" id="role_id" class="form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}  show-tick">
+                                        <option disabled>Assign Role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group{{ $errors->has('password') ? ' text-danger' : '' }}  form-float">
+                                    <div class="form-line">
+                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                        <label class="form-label">Password</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                        <label class="form-label">Confirm Password</label>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary waves-effect" type="submit">Register</button>
+                                <a href="{{ route('admin.show') }}" class="btn bg-black btn-sm float-right">
+                                    Back
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +135,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
 @endsection

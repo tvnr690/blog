@@ -21,6 +21,8 @@
 
     <!-- Bootstrap Core Css -->
     <link href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
 
     <!-- Waves Effect Css -->
     <link href="{{ asset('plugins/node-waves/waves.css') }}" rel="stylesheet" />
@@ -90,7 +92,7 @@
                         <a class="nav-link" href="{{route('admin.login')}}">{{ ucfirst(config('multiauth.prefix')) }} Login</a>
                     </li>
                     @else
-                    <li class="nav-item dropdown">  
+                    <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" v-pre>
                                     {{ auth('admin')->user()->name }} <span class="caret"></span>
@@ -99,7 +101,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @admin('super')
                                     <a class="dropdown-item" href="{{ route('admin.show') }}">{{ ucfirst(config('multiauth.prefix')) }}</a>
-                                   
+
                                 @endadmin
                                     <a class="dropdown-item" href="{{ route('admin.password.change') }}">Change Password</a>
                                 <a class="dropdown-item" href="/admin/logout" onclick="event.preventDefault();
@@ -161,9 +163,9 @@
                             <span>home</span>
                         </a>
                     </li>
-                    
+
                     <li><a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">group</i>
+                            <i class="material-icons">R</i>
                             <span>Roles</span>
                         </a>
                         <ul class="ml-menu">
@@ -175,6 +177,23 @@
                             <li>
                                 <a href="{{ route('admin.roles') }}" >
                                     <span>All Roles</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">group</i>
+                            <span>Admins</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="{{route('admin.register')}}" >
+                                    <span>Add New Admin</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.show') }}" >
+                                    <span>All Admins</span>
                                 </a>
                             </li>
                         </ul>
@@ -610,11 +629,11 @@
         <!-- #END# Right Sidebar -->
     </section>
 
-        
+
     @section('main-content')
-            
+
     @show
-   
+
 
     <!-- Jquery Core Js -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
@@ -633,6 +652,7 @@
 
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
+
 
     <!-- Demo Js -->
     <script src="{{ asset('js/demo.js') }}"></script>
@@ -655,8 +675,11 @@
     <script src="{{ asset('plugins/flot-charts/jquery.flot.time.js') }}"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="{{ asset('plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>   
+    <script src="{{ asset('plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
     <script src="{{ asset('js/pages/index.js') }}"></script>
+    <script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}"></script>
+
+    <script src="{{ asset('js/pages/forms/advanced-form-elements.js') }}"></script>
 
 </body>
 </html>
