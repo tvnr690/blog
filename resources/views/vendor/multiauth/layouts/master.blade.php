@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <style>
+        div.slimScrollDiv .slimScrollBar {    
+            width: 10px !important;
+            color: red !important;
+        }
+    </style>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -87,33 +93,7 @@
                     <!-- Call Search -->
                     <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
                     <!-- #END# Call Search -->
-                    @guest('admin')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.login')}}">{{ ucfirst(config('multiauth.prefix')) }} Login</a>
-                    </li>
-                    @else
-                    <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" v-pre>
-                                    {{ auth('admin')->user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @admin('super')
-                                    <a class="dropdown-item" href="{{ route('admin.show') }}">{{ ucfirst(config('multiauth.prefix')) }}</a>
-
-                                @endadmin
-                                    <a class="dropdown-item" href="{{ route('admin.password.change') }}">Change Password</a>
-                                <a class="dropdown-item" href="/admin/logout" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
+                    
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
@@ -163,7 +143,7 @@
                             <span>home</span>
                         </a>
                     </li>
-
+                    @admin('super')
                     <li><a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">R</i>
                             <span>Roles</span>
@@ -198,6 +178,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endadmin
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">swap_calls</i>

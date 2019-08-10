@@ -17,7 +17,7 @@
                                 @csrf
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                        <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                                         <label class="form-label">Name</label>
                                     </div>
                                 </div>

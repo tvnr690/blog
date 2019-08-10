@@ -3,43 +3,52 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Admin Roles {{ ucfirst(config('multiauth.prefix')) }} List </h2>
+            <h2>{{ ucfirst(config('multiauth.prefix')) }} Profiles </h2>
         </div>
-        <div class="col-xs-12 col-sm-4">
-                @include('multiauth::message')
-            <div class="card profile-card">
-                <div class="profile-header">&nbsp;</div>
-                <div class="profile-body">
-                    <div class="image-area">
-                        <img src="{{ asset('images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">
+        @include('multiauth::message')
+        @foreach ($admins as $admin)
+            <div class="col-xs-12 col-sm-3">               
+                <div class="card profile-card">
+                    <div class="profile-header">&nbsp;</div>
+                    <div class="profile-body">
+                        <div class="image-area">
+                            <img src="{{ asset('images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">
+                        </div>
+                        <div class="content-area">
+                            <h3> {{ $admin->name }}</h3>
+                            <p>Web Software Developer</p>
+                            @foreach ($admin->roles as $role)
+                                <p>{{ $role->name }} </p> 
+                            @endforeach                           
+                            
+                        </div>
                     </div>
-                    <div class="content-area">
-                        <h3>Marc K. Hammond</h3>
-                        <p>Web Software Developer</p>
-                        <p>Administrator</p>
+                    <div class="profile-footer">                        
+                        <ul>
+                            <li>
+                                <span>Status: </span>
+                                <span style="color: {{ $admin->active? 'green' : 'red' }}">{{ $admin->active? 'Active' : 'Inactive' }} </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <a href="#" class="btn bg-red btn-lg waves-effect" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $admin->id }}').submit();"><i class="material-icons">delete</i>&nbsp;<b>Delete</b></a>
+                                    <form id="delete-form-{{ $admin->id }}" action="{{ route('admin.delete',[$admin->id]) }}" method="POST" style="display: none;">
+                                        @csrf @method('delete')
+                                    </form>
+                                </span>
+                                <span>
+                                    <a href="{{route('admin.edit',[$admin->id])}}" class="btn bg-deep-purple btn-lg waves-effect"><i class="material-icons">edit</i>&nbsp;  <b>Edit</b></a>
+                                </span>
+                            </li>
+                        </ul>                        
                     </div>
-                </div>
-                <div class="profile-footer">
-                    <ul>
-                        <li>
-                            <span>Followers</span>
-                            <span>1.234</span>
-                        </li>
-                        <li>
-                            <span>Following</span>
-                            <span>1.201</span>
-                        </li>
-                        <li>
-                            <span>Friends</span>
-                            <span>14.252</span>
-                        </li>
-                    </ul>
-                    <button class="btn btn-primary btn-lg waves-effect btn-block">FOLLOW</button>
                 </div>
             </div>
-        </div>
+        @endforeach
 
-        <div class="container">
+
+
+        {{-- <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -79,7 +88,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </section>
