@@ -1,22 +1,22 @@
-@extends('multiauth::layouts.master') 
+@extends('multiauth::layouts.master')
 @section('main-content')
 
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
             <h2>Admin Roles</h2>
-        </div> 
-        
+        </div>
+
         <div class="row clearfix">
             @include('multiauth::message')
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 @foreach ($roles as $role)
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="header bg-blue d-flex">
                             <h2>
-                                {{ $role->name }} 
+                                {{ $role->name }}
                                 <span class="badge badge-primary badge-pill pull-right">{{ $role->admins->count() }} {{ ucfirst(config('multiauth.prefix')) }}</span>
-                            </h2>                       
+                            </h2>
                         </div>
                         <div class="body">
                             <p>Lorem ipsum dolor sit amet csam alias quis necessitatibus saepe dolore tenetur, qui recusandae quae quas quisquam voluptas accusantium tempore, magnam corporis, facilis eaque!</p>
@@ -33,8 +33,8 @@
                             </a>
                         </div>
                     </div>
+                </div>
                 @endforeach
-            </div>
         </div>
 
 
@@ -49,7 +49,7 @@
                                 <a href="{{ route('admin.role.create') }}" class="btn btn-sm btn-success">New Role</a>
                             </span>
                         </div>
-        
+
                         <div class="card-body">
                     @include('multiauth::message')
                             <ol class="list-group">
@@ -62,7 +62,7 @@
                                         <form id="delete-form-{{ $role->id }}" action="{{ route('admin.role.delete',$role->id) }}" method="POST" style="display: none;">
                                             @csrf @method('delete')
                                         </form>
-        
+
                                         <a href="{{ route('admin.role.edit',$role->id) }}" class="btn btn-sm btn-primary mr-3">Edit</a>
                                     </div>
                                 </li>
@@ -73,9 +73,9 @@
                 </div>
             </div>
         </div>  --}}
-       
 
-        
+
+
     </div>
 </section>
 
