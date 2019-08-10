@@ -27,11 +27,9 @@
                             <form id="delete-form-{{ $role->id }}" action="{{ route('admin.role.delete',$role->id) }}" method="POST" style="display: none;">
                                 @csrf @method('delete')
                             </form>
-
-
                             <a href="{{ route('admin.role.edit',$role->id) }}" class="btn bg-deep-purple waves-effect mr-auto">
-                                    <i class="material-icons">edit</i>
-                                     <span>EXTENSION</span>
+                                <i class="material-icons">edit</i>
+                                <span>EXTENSION</span>
                             </a>
                         </div>
                     </div>
