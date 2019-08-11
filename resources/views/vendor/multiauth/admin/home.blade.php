@@ -7,7 +7,7 @@
             <div class="block-header">
                 <h2>{{ ucfirst(config('multiauth.prefix')) }} Dashboard</h2>
                 @include('multiauth::message')
-                    You are logged in to {{ config('multiauth.prefix') }} side!
+                    You are logged as {{ auth('admin')->user()->name }} !
             </div>
 
             <!-- Widgets -->
