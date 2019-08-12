@@ -21,8 +21,8 @@
                                 <form action="{{ route('admin.category.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="role">Category Name</label>
-                                        <input type="text" placeholder="Give a Category Name" name="name" class="form-control" id="category" required>
+                                        <label for="category">Category Name</label>
+                                        <input type="text" placeholder="Give a Category Name" name="category" class="form-control" id="category" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-sm">Store</button>
                                     <a href="{{ route('admin.category') }}" class="btn btn-sm btn-danger float-right">Back</a>

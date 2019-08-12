@@ -19,5 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/* Catergory routes */
-Route::resource('admin.category', 'Admin\CategoryController');
+/* =========== Catergory routes =========== */
+Route::get('admin/category', 'CategoryController@index')->name('admin.category');
+Route::get('admin/category/create', 'CategoryController@create')->name('admin.category.create');
+Route::post('admin/category/store', 'CategoryController@store')->name('admin.category.store');
+Route::delete('admin/category/{category}', 'CategoryController@destroy')->name('admin.category.delete');
+Route::get('admin/category/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
+Route::patch('admin/category/{category}', 'CategoryController@update')->name('admin.category.update');
