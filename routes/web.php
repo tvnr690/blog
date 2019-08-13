@@ -32,6 +32,8 @@ Route::patch('admin/category/{category}', 'CategoryController@update')->name('ad
 Route::get('admin/posts', 'PostController@index')->name('admin.posts');
 Route::get('admin/post/create', 'PostController@create')->name('admin.post.create');
 Route::post('admin/post/store', 'PostController@store')->name('admin.post.store');
+Route::get('admin/post/{post}/show', 'PostController@show')->name('admin.post.show');
 Route::delete('admin/post/{post}', 'PostController@destroy')->name('admin.post.delete');
 Route::get('admin/post/{post}/edit', 'PostController@edit')->name('admin.post.edit');
+
 Route::patch('admin/post/{post}', 'PostController@update')->name('admin.post.update');

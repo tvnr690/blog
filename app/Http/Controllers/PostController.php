@@ -50,6 +50,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show(Post $post)
+    {
+        return view('multiauth::posts.show', compact('post'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -29,6 +29,10 @@
                                     <i class="material-icons">edit</i>
                                     <span>Update</span>
                                 </a>
+                                <a href="{{ route('admin.post.show', $post->id ) }}" class="btn btn-info">
+                                    <i class="material-icons">remove_red_eye</i>
+                                    <span>View</span>
+                                </a>
                             </div>
                         </div>
                     </div>
