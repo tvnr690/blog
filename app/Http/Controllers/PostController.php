@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-// namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
+use App\Post;
 
-class CategoryController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('multiauth::category.index', compact('categories'));
+        $posts = Post::all();
+        return view('multiauth::post.index', compact('posts'));
     }
 
     /**
@@ -27,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('multiauth::category.create');
+        return view('multiauth::post.create');
     }
 
     /**
@@ -38,10 +37,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['category' => 'required']);
-        Category::create($request->all());
 
-        return redirect(route('admin.category'))->with('message', 'New Category is stored successfully successfully');
     }
 
     /**
@@ -50,6 +46,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -57,9 +57,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        return view('multiauth::category.edit', compact('category'));
+
     }
 
     /**
@@ -69,13 +69,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $category, Request $request)
+    public function update(Request $request, $id)
     {
-        $request->validate(['category' => 'required']);
 
-        $category->update($request->all());
-
-        return redirect(route('admin.category'))->with('message', 'You have updated Category successfully');
     }
 
     /**
@@ -84,10 +80,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
 
-        return redirect()->back()->with('message', 'You have deleted Category successfully');
     }
 }

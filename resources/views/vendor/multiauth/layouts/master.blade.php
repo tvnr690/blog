@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        div.slimScrollDiv .slimScrollBar {    
+        div.slimScrollDiv .slimScrollBar {
             width: 10px !important;
             color: red !important;
         }
@@ -93,7 +93,7 @@
                     <!-- Call Search -->
                     <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
                     <!-- #END# Call Search -->
-                    
+
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
@@ -186,14 +186,14 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="">Create a New Posts</a>
+                                <a href="{{ route('admin.post.create') }}">Create a New Posts</a>
                             </li>
                             <li>
-                                <a href="">All Posts</a>
-                            </li>                            
-                            <li>
+                                <a href="{{ route('admin.posts') }}">All Posts</a>
+                            </li>
+                            {{-- <li>
                                 <a href="">Waves</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li>
@@ -225,7 +225,7 @@
                 <div class="copyright">
                     &copy; {{ date('Y') }} <a href="javascript:void(0);">Venkat Reddy</a>.
                 </div>
-                
+
             </div>
             <!-- #Footer -->
         </aside>
