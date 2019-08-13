@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('multiauth::posts.create');
+        $categories = Category::all();
+        return view('multiauth::posts.create', compact('categories'));
     }
 
     /**

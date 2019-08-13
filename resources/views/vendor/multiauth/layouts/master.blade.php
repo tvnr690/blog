@@ -13,6 +13,7 @@
             color: red !important;
         }
     </style>
+    @yield('css')
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -43,7 +44,9 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{ asset('css/themes/all-themes.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/croppie.css') }}" rel="stylesheet" />
+
 </head>
 
 <body class="theme-red">
@@ -380,9 +383,14 @@
 
     @show
 
+   
 
     <!-- Jquery Core Js -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/croppie.js') }}"></script>
+    @section('cropper')
+        
+    @endsection
 
     <!-- Bootstrap Core Js -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
@@ -426,6 +434,18 @@
     <script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}"></script>
 
     <script src="{{ asset('js/pages/forms/advanced-form-elements.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+
+  
+
+
+
+    @section('script')
+        
+        @show
+
+    
 
 </body>
 </html>
