@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('multiauth::post.index', compact('posts'));
+        return view('multiauth::posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('multiauth::post.create');
+        return view('multiauth::posts.create');
     }
 
     /**
@@ -37,7 +38,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(['p_title' => 'required']);
+        Post::create($request->all());
 
+        return redirect(route('admin.posts'))->with('message', 'New Post is stored successfully successfully');
     }
 
     /**
@@ -46,10 +50,6 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -57,9 +57,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-
+        return view('multiauth::posts.edit', compact('post'));
     }
 
     /**
@@ -69,9 +69,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Post $post, Request $request)
     {
+        $request->validate(['p_title' => 'required']);
 
+        $post->update($request->all());
+
+        return redirect(route('admin.posts'))->with('message', 'You have updated Post successfully');
     }
 
     /**
@@ -80,8 +84,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
+        $post->delete();
 
+        return redirect()->back()->with('message', 'You have deleted Post successfully');
     }
 }
+
+

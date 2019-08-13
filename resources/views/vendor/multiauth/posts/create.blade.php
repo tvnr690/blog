@@ -20,7 +20,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="post">Post Name</label>
-                                        <input type="text" placeholder="Give an awesome name for Post" name="post" class="form-control" id="Post" required>
+                                        <input type="text" placeholder="Give an awesome name for Post" name="p_title" class="form-control" id="Post" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-sm">Store</button>
                                     <a href="{{ route('admin.posts') }}" class="btn btn-sm btn-danger float-right">Back</a>

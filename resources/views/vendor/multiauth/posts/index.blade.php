@@ -13,7 +13,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="card">
                         <div class="header bg-blue d-flex">
-                            <h2> {{ $post->name }} </h2>
+                            <h2> {{ $post->p_title }} </h2>
                         </div>
                         <div class="body">
                             <p>Lorem ipsum dolor sit amet csam alias quis necessitatibus saepe dolore tenetur, qui recusandae quae quas quisquam voluptas accusantium tempore, magnam corporis, facilis eaque!</p>

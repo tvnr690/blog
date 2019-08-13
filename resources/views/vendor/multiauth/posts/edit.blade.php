@@ -21,7 +21,7 @@
                                         @csrf @method('patch')
                                         <div class="form-group">
                                             <label for="post">Post Name</label>
-                                            <input type="text" value="{{ $post->name }}" name="name" class="form-control" id="post">
+                                            <input type="text" value="{{ $post->p_title }}" name="p_title" class="form-control" id="post">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm">Change</button>
                                         <a href="{{ route('admin.posts') }}" class="btn btn-danger btn-sm float-right">Back</a>

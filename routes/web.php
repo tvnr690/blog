@@ -29,7 +29,7 @@ Route::patch('admin/category/{category}', 'CategoryController@update')->name('ad
 
 
 /* =========== Posts routes =========== */
-Route::get('admin/post', 'PostController@index')->name('admin.post');
+Route::get('admin/posts', 'PostController@index')->name('admin.posts');
 Route::get('admin/post/create', 'PostController@create')->name('admin.post.create');
 Route::post('admin/post/store', 'PostController@store')->name('admin.post.store');
 Route::delete('admin/post/{post}', 'PostController@destroy')->name('admin.post.delete');
