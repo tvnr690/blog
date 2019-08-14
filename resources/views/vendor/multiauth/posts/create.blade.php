@@ -18,6 +18,7 @@
                                 @include('multiauth::message')
                                 <form action="{{ route('admin.post.store') }}" method="post">
                                     @csrf
+                                    <input type="hidden" name="p_author" value="{{ auth('admin')->user()->name }}">
                                     <div class="row clearfix">
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -31,7 +32,7 @@
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <label for="post">Post Slug</label>
-                                                    <input type="text" placeholder="Post Slug" name="p_title" class="form-control" id="Post" required>
+                                                    <input type="text" placeholder="Post Slug" name="p_slug" class="form-control" id="Post" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -62,10 +63,13 @@
                                     <div class="form-group">
                                         <label for="post">Select Banner Image</label>
                                         <input type="file" name="upload_image" id="upload_image" />
-                                        <div id="uploaded_image"></div> 
-                                        <div id="imageContainer"></div>                                       
+                                        <textarea style="display:none;" name="p_image" id="p_image"></textarea>
+                                        <div id="uploaded_image"></div>
+                                        <div id="imageContainer">
+                                            <img id="preview" src="" alt="">
+                                        </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="post">Content</label>
                                         <textarea type="text" name="p_content" class="form-control" id="p_content" required></textarea>
@@ -112,19 +116,22 @@
 
 @section('script')
 <script>
-           
+
     $image_crop = $('#image_demo').croppie({
         enableExif: true,
         viewport: {
-            width:200,
-            height:200,
+            width:800,
+            height:300,
             type:'square'
         },
         boundary:{
             width:300,
             height:300
-        }
+        },
+        size: {height: 500, width: 500}
+        // enableZoom: false
     });
+
 
     $('#upload_image').on('change', function(){
         var reader = new FileReader();
@@ -132,11 +139,12 @@
             $image_crop.croppie('bind', {
                 url: event.target.result
             }).then(function(){
-                console.log('jQuery bind complete');
+                $uploadCrop.croppie('setZoom', 0);
+                // console.log('jQuery bind complete');
             });
         }
         reader.readAsDataURL(this.files[0]);
-        $('#uploadimageModal').modal('show');        
+        $('#uploadimageModal').modal('show');
     });
 
     $('.crop_image').click(function(event){
@@ -144,21 +152,13 @@
         type: 'canvas',
         size: 'viewport'
         }).then(function(response){
-            alert(response);
-            $('#uploadimageModal').modal('hide');        
-
-            var src = "data:image/jpeg;base64,";
-            src += item_image;
-            $("#preview").attr('src', src);
-            
-            var newImage = document.createElement('img');
-            newImage.src = src;
-            newImage.width = newImage.height = "80";
-            document.querySelector('#imageContainer').innerHTML = newImage.outerHTML;
-        })
+            $('#uploadimageModal').modal('hide');
+             $("#preview").attr('src', response);
+             $("#p_image").text(response);
+        });
     });
-            
-            
+
+
 
     CKEDITOR.replace( 'p_content', {
         filebrowserBrowseUrl: '/browser/browse.php',
@@ -167,15 +167,7 @@
 </script>
 
 @endsection
-@section('cropper')
-    
 
-<script> 
-         
-            
-
-        </script>
-@endsection
 
 
 

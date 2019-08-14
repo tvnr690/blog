@@ -40,10 +40,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['p_title' => 'required']);
-        Post::create($request->all());
+        $blogInput  = $request->except('p_image');
+        $image = $request->p_image;
 
-        return redirect(route('admin.posts'))->with('message', 'New Post is stored successfully successfully');
+        if($image){
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).time().'.'.'png';
+            \File::put('./public/storage/', $imageName, base64_decode($image));
+            // \File::put(storage_path('post'). '/' . $imageName, base64_decode($image));
+            $blogInput['p_image'] = $imageName;
+        }
+
+        Post::create($blogInput);
+
+        return redirect(route('admin.posts'))->with('message', 'New Post is stored successfully '.$imageName);
     }
 
     /**
@@ -66,7 +77,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('multiauth::posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('multiauth::posts.edit', compact('post', 'categories'));
     }
 
     /**
