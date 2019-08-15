@@ -122,7 +122,7 @@
                                 @guest('admin')
                                     <li><a href="{{route('admin.login')}}"><i class="material-icons">login</i>Sign in</a></li>
                                 @else
-                                    <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                                    <li><a href="{{ route('admin.profile') }}"><i class="material-icons">person</i>Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{ route('admin.password.change') }}"><i class="material-icons">person</i>Change Password</a></li>
                                     <li role="separator" class="divider"></li>

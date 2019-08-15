@@ -14,12 +14,14 @@
     Route::GET('/password/change', 'AdminController@showChangePasswordForm')->name('admin.password.change');
     Route::POST('/password/change', 'AdminController@changePassword');
 
+    
     // Register Admins
     Route::get('/register', 'RegisterController@showRegistrationForm')->name('admin.register');
     Route::post('/register', 'RegisterController@register');
     Route::get('/{admin}/edit', 'RegisterController@edit')->name('admin.edit');
     Route::delete('/{admin}', 'RegisterController@destroy')->name('admin.delete');
     Route::patch('/{admin}', 'RegisterController@update')->name('admin.update');
+    
 
     // Admin Lists
     Route::get('/show', 'AdminController@show')->name('admin.show');

@@ -25,7 +25,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <label for="post">Post Title</label>
-                                                        <input type="text" placeholder="Post Title" value="{{ $post->p_title }}" name="p_title" class="form-control" id="Post" required>
+                                                        <input type="text" placeholder="Post Title" value="{{ $post->p_title }}" name="p_title"  class="form-control" id="p_title" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -33,7 +33,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <label for="post">Post Slug</label>
-                                                        <input type="text" placeholder="Post Slug" value="{{ $post->p_slug }}" name="p_slug" class="form-control" id="Post" required>
+                                                        <input type="text" placeholder="Post Slug" value="{{ $post->p_slug }}" name="p_slug" class="form-control" id="p_slug" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,6 +122,13 @@
 
 @section('script')
 <script>
+      $("#p_title").keyup(function(){
+        var Text = $(this).val();
+        Text = Text.toLowerCase();
+        Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+        $("#p_slug").val(Text);        
+    });
+
 
     $image_crop = $('#image_demo').croppie({
         enableExif: true,

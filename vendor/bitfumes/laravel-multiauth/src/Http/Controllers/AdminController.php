@@ -41,6 +41,7 @@ class AdminController extends Controller
             'oldPassword'   => 'required',
             'password'      => 'required|confirmed',
         ]);
+        
         auth()->user()->update(['password' => bcrypt($data['password'])]);
 
         return redirect(route('admin.home'))->with('message', 'Your password is changed successfully');

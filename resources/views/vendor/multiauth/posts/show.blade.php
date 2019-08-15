@@ -44,13 +44,13 @@
                                                     <li>
                                                         <a href="#">
                                                             <i class="material-icons">thumb_up</i>
-                                                            <span>12 Likes</span>
+                                                            <span>{{ $post->likes }} Likes</span>
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#">
-                                                            <i class="material-icons">comment</i>
-                                                            <span>5 Comments</span>
+                                                            <i class="material-icons">thumb_down</i>
+                                                            <span>{{ $post->dislikes }} Dislikes</span>
                                                         </a>
                                                     </li>
                                                     <li>
