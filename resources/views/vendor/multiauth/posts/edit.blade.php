@@ -68,10 +68,11 @@
                                         <div class="form-group">
                                             <label for="post">Select Banner Image</label>
                                             <input type="file" name="upload_image" id="upload_image" />
-                                            <textarea style="display:none;" name="p_image" id="p_image"></textarea>
+                                            <textarea style="display:none;" name="p_image" id="p_image">{{ $post->p_image }}</textarea>
+                                            
                                             <div id="uploaded_image"></div>
                                             <div id="imageContainer">
-                                                <img id="preview" src="" alt="">
+                                            <img id="preview" src="{{ asset('images/post/'.$post->p_image) }}" alt="">
                                             </div>
                                         </div>
                                         <div class="form-group">

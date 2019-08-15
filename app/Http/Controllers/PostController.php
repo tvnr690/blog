@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
@@ -46,9 +47,9 @@ class PostController extends Controller
         if($image){
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
-            $imageName = str_random(10).time().'.'.'png';
-            \File::put('./public/storage/', $imageName, base64_decode($image));
-            // \File::put(storage_path('post'). '/' . $imageName, base64_decode($image));
+            $imageName = str_random(10).time().'.png'; 
+            \File::put(public_path('images/post'). '/' . $imageName, base64_decode($image));           
+
             $blogInput['p_image'] = $imageName;
         }
 
@@ -77,6 +78,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        
         $categories = Category::all();
         return view('multiauth::posts.edit', compact('post', 'categories'));
     }
@@ -90,11 +92,21 @@ class PostController extends Controller
      */
     public function update(Post $post, Request $request)
     {
-        $request->validate(['p_title' => 'required']);
+        $blogInput  = $request->except('p_image');
+        $image = $request->p_image;           
+        
+        if (strlen($image ) < 1222){
+            $blogInput['p_image'] = $request->p_image;
+        }else{
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).time().'.png'; 
+            \File::put(public_path('images/post'). '/' . $imageName, base64_decode($image));           
 
-        $post->update($request->all());
-
-        return redirect(route('admin.posts'))->with('message', 'You have updated Post successfully');
+            $blogInput['p_image'] = $imageName;
+        }
+        $post->update($blogInput);
+        return redirect(route('admin.posts'))->with('message', 'You have  updated Post successfully'.$request->p_image);
     }
 
     /**

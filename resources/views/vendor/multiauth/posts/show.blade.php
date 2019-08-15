@@ -14,26 +14,29 @@
                                                 <div class="media">
                                                     <div class="media-left">
                                                         <a href="#">
-                                                            <img src="{{ asset('../../images/user-lg.jpg') }}" />
+                                                            <img src="{{ asset('images/user-lg.jpg') }}" />
                                                         </a>
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
                                                             <a href="#"></a>
                                                         </h4>
-                                                        Shared publicly - {{ $post->created_at }}
+                                                        {{ $post->p_author }} - {{ $post->created_at }}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="panel-body">
                                                 <div class="post">
                                                     <div class="post-heading">
-                                                        <h3 class="text-info">{{ $post->p_title }}</h3>
-                                                        <p>I am a very simple wall post. I am good at containing <a href="#">#small</a> bits of <a href="#">#information</a>. I require little more information to use effectively.</p>
+                                                        <h3 class="text-info">{{ $post->p_title }}</h3>                                                       
                                                     </div>
                                                     <div class="post-content">
-                                                        <img src="{{ asset('../../images/profile-post-image.jpg') }}" class="img-responsive" />
+                                                        <img src="{{ asset('images/post/'.$post->p_image) }}" class="img-responsive pb-2" />
+                                                        <div class="text" style="padding:20px">
+                                                            {!! $post->p_content !!}
+                                                        </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="panel-footer">
