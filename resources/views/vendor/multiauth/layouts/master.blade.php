@@ -112,34 +112,18 @@
     <section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
-            <!-- User Info -->
             <div class="user-info">
-                <div class="image">
-                    <img src="{{ asset('images/profiles/'.auth('admin')->user()->profile_pic ) }}" width="48" height="48" alt="Profile">
-                </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth('admin')->user()->name }}</div>
-                    <div class="email">{{ auth('admin')->user()->email }} </div>
-                   
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                                @guest('admin')
-                                    <li><a href="{{route('admin.login')}}"><i class="material-icons">login</i>Sign in</a></li>
-                                @else
-                                    <li><a href="javascrit:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('admin.password.change') }}"><i class="material-icons">person</i>Change Password</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="/admin/logout" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();"><i class="material-icons">input</i>Sign Out</a>
-                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                @endguest
-                            </ul>
-                    </div>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <div class="image">
+                                <img src="{{ asset('images/profiles/'.auth('admin')->user()->profile_pic ) }}" width="48" height="48" alt="User" />
+                            </div>                                    
+                        </li>                                 
+                        <li><div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth('admin')->user()->name }}</div>
+                            <div class="email">{{ auth('admin')->user()->email }}</div>
+                        </li>                          
+                    </ul> 
                 </div>
             </div>
             <!-- #User Info -->
@@ -221,11 +205,12 @@
                         </ul>
                     </li>
                     <li class="header">LABELS</li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-red">donut_large</i>
-                            <span>Log Out</span>
-                        </a>
+                    <li><a href="{{ route('admin.password.change') }}"><i class="material-icons col-green">donut_large</i><span>Change Password</span></a></li>
+                    <li><a href="/admin/logout" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="material-icons  col-red">input</i><span>Sign Out</span></a>
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
