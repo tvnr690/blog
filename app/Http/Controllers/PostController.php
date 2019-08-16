@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Admin;
 
 class PostController extends Controller
 {
@@ -70,6 +71,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // $admin = Admin::where('name', '==', $post->p_author);
         return view('multiauth::posts.show', compact('post'));
     }
 

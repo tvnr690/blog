@@ -5,7 +5,7 @@ namespace Bitfumes\Multiauth\Http\Controllers;
 use Bitfumes\Multiauth\Model\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use App\Post;
 class AdminController extends Controller
 {
     /**
@@ -21,7 +21,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('multiauth::admin.home');
+        $posts = Post::all();
+        return view('multiauth::admin.home', compact('posts'));
     }
 
     public function show()

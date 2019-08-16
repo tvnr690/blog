@@ -14,7 +14,8 @@
                                                 <div class="media">
                                                     <div class="media-left">
                                                         <a href="#">
-                                                            <img src="{{ asset('images/user-lg.jpg') }}" />
+                                                            {{-- <img src="{{ asset('images/profiles/'.$admin->profile_pic) }}" /> --}}
+                                                            <img src="{{ asset('images/profiles/'.auth('admin')->user()->profile_pic) }}" />
                                                         </a>
                                                     </div>
                                                     <div class="media-body">

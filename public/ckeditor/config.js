@@ -25,11 +25,16 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors' },
 		{ name: 'about' }
 	];
+	config.extraPlugins = 'youtube';
+
+	//Extra Plugins
+	// config.extraPlugins = 'youtube';
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
+	// config.addButtons = 'youtube';
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
 

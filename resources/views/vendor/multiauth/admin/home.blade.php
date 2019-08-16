@@ -16,6 +16,7 @@
                         <div class="icon">
                             <i class="material-icons">playlist_add_check</i>
                         </div>
+
                         <div class="content">
                             <div class="text">Total Blogs</div>
                             <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
@@ -86,8 +87,21 @@
                                             <th>Delete</th>
                                         </tr>
                                     </thead>                                    
-                                    <tbody  >
+                                    <tbody>
+                                        @foreach ($posts as $post)
                                         <tr style="background-color: #fff !important;">
+                                                <td>{{ $post->p_author }}</td>
+                                                <td>{{ $post->p_title }}</td>
+                                                <td>{{ $post->created_at }}</td>
+                                                <td class="text-center text-info"><a href="{{ route('admin.post.show', $post->id ) }}"><i class="material-icons">remove_red_eye</i></a></td>
+                                                <td class="text-center text-success"><i class="material-icons">publish</i></td>
+                                                <td class="text-center text-warning"><a href="{{ route('admin.post.edit',$post->id) }}"><i class="material-icons">edit</i></a></td>
+                                                <td class="text-center text-danger"><i class="material-icons">delete</i></td>
+                                            </tr>
+                                        @endforeach
+
+                                        {{-- <a href="{{ route('admin.post.edit',$post->id) }}"></a> --}}
+                                        {{-- <tr style="background-color: #fff !important;">
                                             <td>Tiger Nixon</td>
                                             <td>System Architect</td>
                                             <td>Edinburgh</td>
@@ -95,7 +109,7 @@
                                             <td class="text-center text-success"><i class="material-icons">publish</i></td>
                                             <td class="text-center text-warning"><i class="material-icons">edit</i></td>
                                             <td class="text-center text-danger"><i class="material-icons">delete</i></td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                     
                                 </table>
