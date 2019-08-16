@@ -53,7 +53,6 @@
                                 aria-expanded="false" v-pre>
                                     {{ auth('admin')->user()->name }} <span class="caret"></span>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @admin('super')
                                     <a class="dropdown-item" href="{{ route('admin.show') }}">{{ ucfirst(config('multiauth.prefix')) }}</a>

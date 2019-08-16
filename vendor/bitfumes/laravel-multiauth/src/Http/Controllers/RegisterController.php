@@ -75,6 +75,23 @@ class RegisterController extends Controller
         $admin = new Admin();
 
         $fields           = $this->tableFields();
+
+        $image = $data['profile_pic'];
+
+        if($image){
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = "pic".str_random(10).time().'.png'; 
+            \File::put(public_path('images/profiles'). '/' . $imageName, base64_decode($image));           
+
+            $data['profile_pic'] = $imageName;
+        }
+        foreach ($fields as $field) {
+            if (isset($data[$field])) {
+                $admin->$field = $data[$field];
+            }
+        }
+
         $data['password'] = bcrypt($data['password']);
         foreach ($fields as $field) {
             if (isset($data[$field])) {
@@ -113,6 +130,24 @@ class RegisterController extends Controller
 
     public function update(Admin $admin, AdminRequest $request)
     {
+        $request['profile_pic']  = $request->profile_pic;
+        $image = $request['profile_pic']; 
+
+        // print_r($request['profile_pic']);exit();         
+        
+        if (strlen($image ) < 422){
+            $request['profile_pic']  = $request->profile_pic;
+        }else{
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).time().'.png'; 
+            \File::put(public_path('images/profiles'). '/' . $imageName, base64_decode($image));           
+
+            $request['profile_pic']  = $imageName;
+        }
+        // $post->update($blogInput);
+
+
         $request['active'] = request('activation') ?? 0;
         unset($request['activation']);
         $admin->update($request->except('role_id'));

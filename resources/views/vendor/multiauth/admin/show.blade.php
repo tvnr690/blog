@@ -12,11 +12,15 @@
                     <div class="profile-header">&nbsp;</div>
                     <div class="profile-body">
                         <div class="image-area">
-                            <img src="{{ asset('images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">
+                            @if(!empty($admin->profile_pic)) 
+                                <img src=" {{ asset('images/profiles/'.$admin->profile_pic ) }}" alt="AdminBSB - Profile Image"> 
+                            @else
+                                <img src="{{ asset('images/user-lg.jpg') }}" alt="AdminBSB - Profile Image">  
+                            @endif 
                         </div>
                         <div class="content-area">
                             <h3> {{ $admin->name }}</h3>
-                            <p>Web Software Developer</p>
+                            <p>{{ $admin->designation }}</p>
                             @foreach ($admin->roles as $role)
                                 <p>{{ $role->name }} </p> 
                             @endforeach                           

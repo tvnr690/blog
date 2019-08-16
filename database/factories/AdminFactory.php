@@ -8,6 +8,8 @@ $factory->define(Admin::class, function (Faker\Generator $faker) {
         'name'           => $faker->name,
         'email'          => $faker->unique()->safeEmail,
         'password'       => '$2y$04$xjUrUueX1ZrTGffLOvR4RuepA3JbmdmDItQXgx2BbDx5GJF4YkNHO', //secret123
+        'profile_pic'    => 'user.png',
+        'designation'    => 'designation',
         'remember_token' => Str::random(10),
         'active'         => 1
     ];

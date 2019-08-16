@@ -1,4 +1,3 @@
-{{-- @extends('multiauth::layouts.app')  --}}
 @extends('multiauth::layouts.master') 
 
 @section('main-content')
@@ -18,7 +17,7 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW TASKS</div>
+                            <div class="text">Total Blogs</div>
                             <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -29,7 +28,7 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW TICKETS</div>
+                            <div class="text">Not Published Blogs</div>
                             <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -40,7 +39,7 @@
                             <i class="material-icons">forum</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW COMMENTS</div>
+                            <div class="text">Published Blogs</div>
                             <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -51,135 +50,72 @@
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW VISITORS</div>
+                            <div class="text">Total Users</div>
                             <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            
 
-            <div class="row clearfix">
-                <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="block-header">
+                <h2>
+                    User Blog Posts
+                    <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>
+                </h2>
+            </div>
+              <!-- Exportable Table -->
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>TASK INFOS</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h2>
+                                Blog Posts
+                            </h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos">
-                                    <thead>
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead class="bg-pink">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Task</th>
-                                            <th>Status</th>
-                                            <th>Manager</th>
-                                            <th>Progress</th>
+                                            <th>User Name</th>
+                                            <th>Post Title</th>
+                                            <th>Submitted On</th>
+                                            <th>View</th>
+                                            <th>Publish</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Task A</td>
-                                            <td><span class="label bg-green">Doing</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Task B</td>
-                                            <td><span class="label bg-blue">To Do</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Task C</td>
-                                            <td><span class="label bg-light-blue">On Hold</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Task D</td>
-                                            <td><span class="label bg-orange">Wait Approvel</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Task E</td>
-                                            <td>
-                                                <span class="label bg-red">Suspended</span>
-                                            </td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-red" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%"></div>
-                                                </div>
-                                            </td>
+                                    </thead>                                    
+                                    <tbody  >
+                                        <tr style="background-color: #fff !important;">
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td class="text-center text-info"><i class="material-icons">remove_red_eye</i></td>
+                                            <td class="text-center text-success"><i class="material-icons">publish</i></td>
+                                            <td class="text-center text-warning"><i class="material-icons">edit</i></td>
+                                            <td class="text-center text-danger"><i class="material-icons">delete</i></td>
                                         </tr>
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- #END# Task Info -->
-                <!-- Browser Usage -->
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="header">
-                            <h2>BROWSER USAGE</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div id="donut_chart" class="dashboard-donut-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Browser Usage -->
             </div>
+            <!-- #END# Exportable Table -->
+            
+            
+
+           
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            
+            
         </div>
     </section>
 

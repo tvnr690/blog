@@ -48,6 +48,10 @@
     <link href="{{ asset('css/croppie.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/prism.css') }}" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="{{ asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+
+
 
 </head>
 
@@ -111,18 +115,19 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{ asset('images/user.png') }}" width="48" height="48" alt="User" />
+                    <img src="{{ asset('images/profiles/'.auth('admin')->user()->profile_pic ) }}" width="48" height="48" alt="Profile">
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth('admin')->user()->name }}</div>
-                    <div class="email">{{ auth('admin')->user()->email }}</div>
+                    <div class="email">{{ auth('admin')->user()->email }} </div>
+                   
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                                 @guest('admin')
                                     <li><a href="{{route('admin.login')}}"><i class="material-icons">login</i>Sign in</a></li>
                                 @else
-                                    <li><a href="{{ route('admin.profile') }}"><i class="material-icons">person</i>Profile</a></li>
+                                    <li><a href="javascrit:void(0);"><i class="material-icons">person</i>Profile</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{ route('admin.password.change') }}"><i class="material-icons">person</i>Change Password</a></li>
                                     <li role="separator" class="divider"></li>
@@ -418,20 +423,21 @@
 
     <!-- Morris Plugin Js -->
     <script src="{{ asset('plugins/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('plugins/morrisjs/morris.js') }}"></script>
 
-    <!-- ChartJs -->
-    <script src="{{ asset('plugins/chartjs/Chart.bundle.js') }}"></script>
+    {{-- for datatables  --}}
+    <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
 
-    <!-- Flot Charts Plugin Js -->
-    <script src="{{ asset('plugins/flot-charts/jquery.flot.js') }}"></script>
-    <script src="{{ asset('plugins/flot-charts/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('plugins/flot-charts/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('plugins/flot-charts/jquery.flot.categories.js') }}"></script>
-    <script src="{{ asset('plugins/flot-charts/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('js/pages/tables/jquery-datatable.js') }}"></script>
 
-    <!-- Sparkline Chart Plugin Js -->
-    <script src="{{ asset('plugins/jquery-sparkline/jquery.sparkline.js') }}"></script>
+
     <script src="{{ asset('js/pages/index.js') }}"></script>
     <script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}"></script>
 
@@ -439,6 +445,7 @@
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('js/prism.js') }}"></script>
 
+    
 
 
   
